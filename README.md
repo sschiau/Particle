@@ -7,7 +7,7 @@ PHP extended implementation of Twitter Snowflake ID Generator (Extended to 42bit
 For high availability within and across data centers, machines generating ids should not have to coordinate with each other.
 
 ##  Solution
-* PHP (tested on version 5.4.13)
+* PHP (tested on version 5.5.3)
 * id (64 bits) is composed of:
   * time - 42 bits (millisecond precision w/ a custom epoch gives us 96 years 1 month 21 days 16 hours 42 minutes 24 seconds in the future)
   * configured machine id - 10 bits - up to 1024 machines
@@ -15,16 +15,20 @@ For high availability within and across data centers, machines generating ids sh
 
 ### System Clock Dependency
 You should use NTP to keep your system clock accurate.
-Non-atomic clock protection will be added soon.
 
 ## How to use it
 ### Generate Particle ID
 1. Change const EPOCH in particle class to today epoch time w/ miliseconds (13 digits)
 2. Import Particle class
-3. echo (new Particle)->generateParticle(machine_id); //for PHP 5.4.13
+3.
+<code>
+echo (new Particle)->generateParticle(machine_id); //for PHP 5.4.13
+</code>
 
 ### Time from Particle ID (w/ milisecond precision)
+<code>
 echo (new Particle)->timeFromParticle(particle_id); //for PHP 5.4.13
+</code>
 
 
 ## License

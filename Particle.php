@@ -5,6 +5,7 @@
 	Web: www.schiau.co
 	File: Particle.php
 	Created: 1364036124000 (UNIX Time)
+	Modified: 1378831167000 (UNIX Time)
 	About: PHP implementation of Twitter Snowflake ID Generator (Extended to 42bits epoch for 96 years 1 month 21 days 16 hours 42 minutes 24 seconds in the future)
 	License: Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
 
@@ -14,7 +15,7 @@
 
 class Particle
 {
-	const EPOCH=1364036124000;
+	const EPOCH=1378831167000;
 	
 	final public function generateParticle($machine_id)
 	{
