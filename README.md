@@ -20,8 +20,7 @@ You should use NTP to keep your system clock accurate.
 ### Generate Particle ID
 1. Change const EPOCH in particle class to today epoch time w/ miliseconds (13 digits)
 2. Import Particle class
-3.
-<code>
+3. <code>
 echo (new Particle)->generateParticle(machine_id); //for PHP 5.4.13
 </code>
 
