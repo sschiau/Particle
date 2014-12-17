@@ -26,7 +26,7 @@ Change const EPOCH in particle class to today epoch time w/ miliseconds (13 digi
 	Particle::generateParticle($machineID);
 ```
 
-### Time from Particle ID (w/ milisecond precision)
+#### Time from Particle ID (w/ milisecond precision)
 ```PHP
 	$particleID = '4611692470816737853';
 	
