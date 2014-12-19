@@ -1,7 +1,7 @@
 #Particle
 ####Language: PHP 
 ####64bits int Time Based ID Generator
-PHP extended implementation of Twitter Snowflake ID Generator
+PHP implementation of Twitter Snowflake ID Generator
 
 ### Uncoordinated
 For high availability within and across data centers, machines generating ids should not have to coordinate with each other.
