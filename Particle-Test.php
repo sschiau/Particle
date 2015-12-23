@@ -36,6 +36,6 @@ $machineID = 1;
 $id = Particle::generateParticle($machineID);
 
 var_dump("Particle ID: ". $id);
-var_dump("Time UNIX: ".Particle::timeFromparticle($id));
+var_dump("Time UNIX: ".Particle::timeFromParticle($id));
 
 ?>
