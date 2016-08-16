@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2014 Silviu Schiau.
+ * Copyright 2014-2016 Silviu Schiau.
  *
  * This copyright notice
  * shall be included in all copies or substantial portions of the software.
@@ -20,8 +20,8 @@
  * @author Silviu Schiau <pr@silviu.co>
  * @package Schiau
  * @created 1364036124000 (UNIX Time)
- * @modified 1418803239960 (UNIX Time)
- * @version 1.0.1
+ * @modified 1471331794000 (UNIX Time)
+ * @version 1.0.2
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Thanks to Twitter for Snowflake.
@@ -29,22 +29,20 @@
 
 namespace Schiau\Utilities;
 
-abstract class Particle
-{
+abstract class Particle {
 	const EPOCH = 1418801787000;
-	
-	public static function generateParticle($machine_id)
-	{
-		/* 
+
+	public static function generateParticle($machine_id) {
+		/*
 		* Time - 41 bits
 		*/
 		$time = floor(microtime(true) * 1000);
-		
+
 		/*
 		* Substract custom epoch from current time
 		*/
 		$time -= self::EPOCH;
-		
+
 		/*
 		* Create a base and add time to it
 		*/
@@ -58,22 +56,21 @@ abstract class Particle
 		/*
 		* sequence number - 12 bits - up to 2048 random numbers per machine
 		*/
-		$random = mt_rand(1, pow(2,11)-1);		
+		$random = mt_rand(1, pow(2,11)-1);
 		$random = decbin(pow(2,11)-1 + $random);
 
 		/*
 		* Pack
 		*/
 		$base = $base.$machineid.$random;
-		
+
 		/*
 		* Return unique time id no
 		*/
 		return bindec($base);
 	}
-	
-	public static function timeFromParticle($particle)
-	{
+
+	public static function timeFromParticle($particle) {
 		/*
 		* Return time
 		*/

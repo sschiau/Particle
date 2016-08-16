@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2014 Silviu Schiau.
+ * Copyright 2014-2016 Silviu Schiau.
  *
  * This copyright notice
  * shall be included in all copies or substantial portions of the software.
@@ -20,8 +20,8 @@
  * @author Silviu Schiau <pr@silviu.co>
  * @package Schiau
  * @created 1364036124000 (UNIX Time)
- * @modified 1418803239960 (UNIX Time)
- * @version 1.0.1
+ * @modified 1471331794000 (UNIX Time)
+ * @version 1.0.2
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Thanks to Twitter for Snowflake.
