@@ -1,0 +1,17 @@
+{
+    "name": "Particle",
+    "version": "1.0.1",
+    "repositories": [{
+        "type": "git",
+        "url": "git@github.com:sschiau/Particle.php.git"
+    }],
+    "license": "./LICENSE.MD",
+    "authors": [{
+        "name": "Silviu Schiau",
+        "email": "pr@silviu.co",
+        "homepage": "http://www.silviu.co"
+    }],
+    "support": {
+        "issues": "https://github.com/sschiau/Particle.php/issues"
+    }
+}
