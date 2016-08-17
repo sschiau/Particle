@@ -20,14 +20,13 @@
  * @author Silviu Schiau <pr@silviu.co>
  * @package Schiau
  * @created 1364036124000 (UNIX Time)
- * @modified 1471331794000 (UNIX Time)
- * @version 1.0.2
+ * @version 1.1.0
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Thanks to Twitter for Snowflake.
  */
 
-require 'Particle.php';
+require '../Sources/Particle.php';
 
 use Schiau\Utilities\Particle;
 
