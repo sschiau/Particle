@@ -1,0 +1,44 @@
+# +-----------------------------------------------------+
+# | File extensions to be ignored anywhere in the tree. |
+# +-----------------------------------------------------+
+
+# + Temp files created by most text editors.
+*~
+
+# + Merge files created by git.
+*.orig
+
+# + Byte compiled Python modules.
+*.pyc
+
+# + vim swap files
+.*.sw[a-z]
+.sw?
+
+
+# +-----------------------------------------------------------------------+
+# | Directories to ignore (do not add trailing '/'s, they skip symlinks). |
+# +-----------------------------------------------------------------------+
+
+# + Metadata Mac
+.DS_Store
+.Trashes
+.Spotlight_V100
+
+# + Vendor
+vendor
+
+
+# +-----------------+
+# | Files to ignore |
+# +-----------------+
+
+# + Composer
+composer.phar
+composer.lock
+
+# +----------------------------+
+# | Files extensions to ignore |
+# +----------------------------+
+
+.idea
