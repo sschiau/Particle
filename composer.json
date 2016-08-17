@@ -5,7 +5,7 @@
         "type": "git",
         "url": "git@github.com:sschiau/Particle.git"
     }],
-    "license": "./LICENSE.MD",
+    "license": "LICENSE.MD",
     "authors": [{
         "name": "Silviu Schiau",
         "email": "pr@silviu.co",
