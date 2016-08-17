@@ -35,7 +35,6 @@ vendor
 
 # + Composer
 composer.phar
-composer.lock
 
 # +----------------------------+
 # | Files extensions to ignore |
