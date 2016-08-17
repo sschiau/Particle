@@ -20,7 +20,7 @@
  * @author Silviu Schiau <pr@silviu.co>
  * @package Schiau
  * @created 1364036124000 (UNIX Time)
- * @version 1.1.1
+ * @version 1.1.2
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Thanks to Twitter for Snowflake.

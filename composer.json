@@ -1,6 +1,6 @@
 {
-    "name": "Particle",
-    "version": "1.1.1",
+    "name": "particle/particle",
+    "version": "1.1.2",
     "repositories": [{
         "type": "git",
         "url": "git@github.com:sschiau/Particle.git"
