@@ -13,5 +13,8 @@
     }],
     "support": {
         "issues": "https://github.com/sschiau/Particle.php/issues"
+    },
+    "require": {
+        "php": "^5.5.3 || ^7.0",
     }
 }
