@@ -1,9 +1,9 @@
 {
     "name": "Particle",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "repositories": [{
         "type": "git",
-        "url": "git@github.com:sschiau/Particle.php.git"
+        "url": "git@github.com:sschiau/Particle.git"
     }],
     "license": "./LICENSE.MD",
     "authors": [{
@@ -12,7 +12,7 @@
         "homepage": "http://www.silviu.co"
     }],
     "support": {
-        "issues": "https://github.com/sschiau/Particle.php/issues"
+        "issues": "https://github.com/sschiau/Particle/issues"
     },
     "require": {
         "php": "^5.5.3 || ^7.0"
