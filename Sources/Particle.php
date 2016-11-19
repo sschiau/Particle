@@ -19,8 +19,7 @@
  * @about PHP implementation of Twitter Snowflake ID Generator (64 bit ID)
  * @author Silviu Schiau <pr@silviu.co>
  * @package Schiau
- * @created 1364036124000 (UNIX Time)
- * @version 1.1.2
+ * @version 2.0.0
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Thanks to Twitter for Snowflake.
@@ -29,11 +28,19 @@
 namespace Schiau\Utilities;
 
 abstract class Particle {
-	const EPOCH = 1418801787000;
+	const EPOCH = 1479533469598;
+	const max12bit = 4095;
+	const max41bit = 1099511627775;
 
-	public static function generateParticle($machine_id) {
+	static $machineId = null;
+
+	public static function machineId($mId) {
+	    self::$machineId = $mId;
+	}
+
+	public static function generateParticle() {
 		/*
-		* Time - 41 bits
+		* Time - 42 bits
 		*/
 		$time = floor(microtime(true) * 1000);
 
@@ -45,18 +52,17 @@ abstract class Particle {
 		/*
 		* Create a base and add time to it
 		*/
-		$base = decbin(pow(2,40) - 1 + $time);
+		$base = decbin(self::max41bit + $time);
 
 		/*
-		* Configured machine id - 10 bits - up to 512 machines
+		* Configured machine id - 10 bits - up to 1024 machines
 		*/
-		$machineid = decbin(pow(2,9) - 1 + $machine_id);
+		$machineid = str_pad(decbin(self::$machineId), 10, "0", STR_PAD_LEFT);
 
 		/*
-		* sequence number - 12 bits - up to 2048 random numbers per machine
+		* sequence number - 12 bits - up to 4096 random numbers per machine
 		*/
-		$random = mt_rand(1, pow(2,11)-1);
-		$random = decbin(pow(2,11)-1 + $random);
+		$random = str_pad(decbin(mt_rand(0, self::max12bit)), 12, "0", STR_PAD_LEFT);
 
 		/*
 		* Pack
@@ -73,7 +79,7 @@ abstract class Particle {
 		/*
 		* Return time
 		*/
-		return bindec(substr(decbin($particle),0,41)) - pow(2,40) + 1 + self::EPOCH;
+		return bindec(substr(decbin($particle),0,41)) - self::max41bit + self::EPOCH;
 	}
 }
 
