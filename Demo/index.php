@@ -19,8 +19,7 @@
  * @about PHP implementation of Twitter Snowflake ID Generator (64 bit ID)
  * @author Silviu Schiau <pr@silviu.co>
  * @package Schiau
- * @created 1364036124000 (UNIX Time)
- * @version 1.1.2
+ * @version 2.0.0
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Thanks to Twitter for Snowflake.
@@ -30,9 +29,8 @@ require '../Sources/Particle.php';
 
 use Schiau\Utilities\Particle;
 
-$machineID = 1;
-
-$id = Particle::generateParticle($machineID);
+Particle::machineId(0);
+$id = Particle::generateParticle();
 
 var_dump("Particle ID: ". $id);
 var_dump("Time UNIX: ".Particle::timeFromParticle($id));
