@@ -19,7 +19,7 @@
  * @about PHP implementation of Twitter Snowflake ID Generator (64 bit ID)
  * @author Silviu Schiau <pr@silviu.co>
  * @package Schiau
- * @version 2.0.0
+ * @version 2.1.0
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Thanks to Twitter for Snowflake.
