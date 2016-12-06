@@ -1,0 +1,18 @@
+language: php
+
+node_js:
+    - '5.4'
+    - '5.5'
+    - '5.6'
+    - '7.0'
+    - hhvm
+    - nightly
+
+os:
+    - linux
+
+install:
+    - composer install
+
+script:
+    - phpunit Tests/ParticleTest.php
