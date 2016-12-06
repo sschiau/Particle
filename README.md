@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sschiau/Particle.svg?branch=master)](https://travis-ci.org/sschiau/Particle)
+
 #Particle
 ####Language: PHP
 ####64bits int Time Based ID Generator
