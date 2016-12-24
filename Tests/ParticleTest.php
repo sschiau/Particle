@@ -34,8 +34,7 @@ class ParticleTest extends TestCase
     /**
      * @covers Particle::length
      */
-    public function testParticleLength()
-    {
+    public function testParticleLength(){
         $particleId = Particle::generateParticle();
         $this->assertEquals(19, strlen((string)$particleId));
     }
@@ -43,8 +42,7 @@ class ParticleTest extends TestCase
     /**
      * @covers Particle::timeFromParticle
      */
-    public function testTimeLengthFromParticle()
-    {
+    public function testTimeLengthFromParticle(){
         $particleId = Particle::generateParticle();
         $time = Particle::timeFromParticle($particleId);
         $this->assertEquals(13, strlen((string)$time));
