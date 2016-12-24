@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/sschiau/Particle.svg?branch=master)](https://travis-ci.org/sschiau/Particle)
+[![Latest Stable Version](https://poser.pugx.org/sschiau/particle/v/stable)](https://packagist.org/packages/sschiau/particle)
+[![License](https://poser.pugx.org/sschiau/particle/license)](https://packagist.org/packages/sschiau/particle)
 
 #Particle
 ####Language: PHP
