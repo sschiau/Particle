@@ -2,9 +2,9 @@
 [![Latest Stable Version](https://poser.pugx.org/sschiau/particle/v/stable)](https://packagist.org/packages/sschiau/particle)
 [![License](https://poser.pugx.org/sschiau/particle/license)](https://packagist.org/packages/sschiau/particle)
 
-#Particle
-####Language: PHP
-####64bits int Time Based ID Generator
+# Particle
+#### Language: PHP
+#### 64bits int Time Based ID Generator
 
 ### Uncoordinated
 For high availability within and across data centers, machines generating ids should not have to coordinate with each other.
