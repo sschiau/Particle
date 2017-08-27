@@ -10,7 +10,7 @@
 For high availability within and across data centers, machines generating ids should not have to coordinate with each other.
 
 ### Solution
-* PHP (tested on version 5.6.27)
+* PHP (tested on v7.1.8)
 * Particle Id (64 bits) is composed of:
   * time - 42 bits (millisecond precision w/ a custom epoch)
   * configured machine id - 10 bits - up to 1024 machines

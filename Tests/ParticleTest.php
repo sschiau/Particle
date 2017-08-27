@@ -2,10 +2,10 @@
 /**
  * @author Silviu Schiau <pr@silviu.co>
  * @package Schiau
- * @version 2.2.0
+ * @version 2.2.1
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
- * Copyright 2014-2016 Silviu Schiau.
+ * Copyright 2014-2017 Silviu Schiau.
  *
  * This copyright notice
  * shall be included in all copies or substantial portions of the software.
@@ -25,9 +25,8 @@ require 'Sources/Particle.php';
 use PHPUnit\Framework\TestCase;
 use Schiau\Utilities\Particle;
 
-class ParticleTest extends TestCase
-{
-    public function __construct() {
+class ParticleTest extends TestCase {
+    public function setUp() {
         Particle::machineId(0);
     }
 
