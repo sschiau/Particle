@@ -25,9 +25,8 @@ require 'Sources/Particle.php';
 use PHPUnit\Framework\TestCase;
 use Schiau\Utilities\Particle;
 
-class ParticleTest extends TestCase
-{
-    public function __construct() {
+class ParticleTest extends TestCase {
+    public function setUp() {
         Particle::machineId(0);
     }
 
