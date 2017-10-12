@@ -20,7 +20,7 @@
  *
  */
 
-require '../Sources/Particle.php';
+require __DIR__.'/../vendor/autoload.php';
 
 use Schiau\Utilities\Particle;
 
