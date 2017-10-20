@@ -2,7 +2,7 @@
 /**
  * @author Silviu Schiau <pr@silviu.co>
  * @package Schiau
- * @version 2.2.1
+ * @version 2.2.2
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Copyright 2014-2017 Silviu Schiau.
