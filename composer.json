@@ -1,11 +1,11 @@
 {
     "name": "sschiau/particle",
-    "version": "2.2.2",
+    "version": "2.2.3",
     "repositories": [{
         "type": "git",
         "url": "git@github.com:sschiau/Particle.git"
     }],
-    "license": "LICENSE.MD",
+    "license": "MIT",
     "authors": [{
         "name": "Silviu Schiau",
         "email": "pr@silviu.co",
