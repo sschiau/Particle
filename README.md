@@ -21,14 +21,14 @@ You should use NTP to keep your system clock accurate.
 
 ## How to use it
 #### Generate Particle ID
-Change const EPOCH in particle class to today epoch time w/ miliseconds (13 digits)
+Change const EPOCH in particle class to today epoch time w/ millisecond (13 digits)
 
 ```PHP
 	$machineID = 0; // Machine ID (aka Server ID no.)
 	Particle::generateParticle($machineID);
 ```
 
-#### Time from Particle ID (w/ milisecond precision)
+#### Time from Particle ID (w/ millisecond precision)
 ```PHP
 	$particleID = '4611692470816737853';
 	Particle::timeFromParticle($particleID);
