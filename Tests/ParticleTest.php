@@ -2,7 +2,7 @@
 /**
  * @author Silviu Schiau <pr@silviu.co>
  * @package Schiau
- * @version 2.2.2
+ * @version 2.3.0
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Copyright 2014-2017 Silviu Schiau.
@@ -20,31 +20,27 @@
  *
  */
 
-require 'Sources/Particle.php';
-
 use PHPUnit\Framework\TestCase;
 use Schiau\Utilities\Particle;
 
-class ParticleTest extends TestCase {
-    public function setUp() {
+class ParticleTest extends TestCase
+{
+    protected function setUp(): void
+    {
         Particle::machineId(0);
     }
 
-    /**
-     * @covers Particle::length
-     */
-    public function testParticleLength(){
-        $particleId = Particle::generateParticle();
-        $this->assertEquals(19, strlen((string)$particleId));
+    public function testParticleLength(): void
+    {
+        $id = Particle::generateParticle();
+        $this->assertSame(19, strlen((string) $id));
     }
 
-    /**
-     * @covers Particle::timeFromParticle
-     */
-    public function testTimeLengthFromParticle(){
-        $particleId = Particle::generateParticle();
-        $time = Particle::timeFromParticle($particleId);
-        $this->assertEquals(13, strlen((string)$time));
+    public function testTimeLengthFromParticle(): void
+    {
+        $id = Particle::generateParticle();
+        $time = Particle::timeFromParticle($id);
+        $this->assertSame(13, strlen((string) $time));
     }
 }
 ?>

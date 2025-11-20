@@ -1,6 +1,6 @@
 {
     "name": "sschiau/particle",
-    "version": "2.3.0",
+    "version": "3.0.0",
     "repositories": [{
         "type": "git",
         "url": "git@github.com:sschiau/Particle.git"
@@ -15,7 +15,7 @@
         "issues": "https://github.com/sschiau/Particle/issues"
     },
     "require": {
-        "php": "^7.1.23"
+        "php": "^8.4.14"
     },
     "autoload": {
         "files": [
@@ -23,6 +23,6 @@
         ]
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.2.5"
+        "phpunit/phpunit": "^12.4"
     }
 }

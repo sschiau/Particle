@@ -20,14 +20,14 @@
  *
  */
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Schiau\Utilities\Particle;
 
 Particle::machineId(0);
 $id = Particle::generateParticle();
 
-var_dump("Particle ID: ". $id);
-var_dump("Time UNIX: ".Particle::timeFromParticle($id));
+var_dump('Particle ID: ' . $id);
+var_dump('Time UNIX: ' . Particle::timeFromParticle($id));
 
 ?>
