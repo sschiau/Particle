@@ -2,7 +2,7 @@
 /**
  * @author Silviu Schiau <pr@silviu.co>
  * @package Schiau
- * @version 3.0
+ * @version 3.1.0
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Copyright 2014-2025 Silviu Schiau.
@@ -23,6 +23,10 @@
 declare(strict_types=1);
 
 namespace Schiau\Utilities;
+
+if (\PHP_VERSION_ID < 80512 || \PHP_INT_SIZE !== 8) {
+    throw new \RuntimeException('Particle requires 64-bit PHP 8.5.12 or newer.');
+}
 
 final class Particle
 {

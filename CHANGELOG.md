@@ -1,3 +1,10 @@
+## 3.1.0 (October 24 2026)
+- Require 64-bit PHP 8.5.12 or newer in Composer and when loading the library directly.
+- Enable Composer runtime platform checks and refresh lockfile metadata.
+- Run CI on PHP 8.5.12 and verify that PHP 8.4.27 and 8.5.11 are rejected.
+- Correct the test workflow filename, load the test suite explicitly, and check dependency security advisories.
+- Document the PHP requirement and deployment checks.
+
 ## 3.0.0 (November 20 2025)
 Added strict types and modern PHP syntax
 Added full namespace compliance

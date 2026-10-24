@@ -1,0 +1,68 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  php:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5.12"
+          coverage: none
+
+      - name: install
+        run: composer install --no-interaction --prefer-dist
+
+      - name: run tests
+        run: |
+          composer check-platform-reqs
+          vendor/bin/phpunit --bootstrap vendor/autoload.php --do-not-cache-result Tests
+          php Demo/index.php
+
+      - name: check dependency security advisories
+        run: composer audit --locked
+
+  reject-unsupported-php:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ["8.4.27", "8.5.11"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - name: reject unsupported PHP at runtime
+        run: |
+          php -r '
+          try {
+              require "Sources/Particle.php";
+          } catch (RuntimeException $e) {
+              if ($e->getMessage() === "Particle requires 64-bit PHP 8.5.12 or newer.") {
+                  exit(0);
+              }
+              throw $e;
+          }
+          fwrite(STDERR, "Unsupported PHP was accepted.\n");
+          exit(1);'
+      - name: reject unsupported PHP in Composer
+        run: |
+          if composer check-platform-reqs --lock --format=json > platform-check.json; then
+            echo "Unsupported PHP was accepted by Composer."
+            exit 1
+          fi
+          php -r '
+          $checks = json_decode(file_get_contents("platform-check.json"), true, 512, JSON_THROW_ON_ERROR);
+          foreach ($checks as $check) {
+              if ($check["name"] === "php" && $check["status"] === "failed") {
+                  exit(0);
+              }
+          }
+          fwrite(STDERR, "Composer did not report a PHP version failure.\n");
+          exit(1);'

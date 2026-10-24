@@ -2,7 +2,7 @@
 Thank you for your interest in improving Particle. Follow the rules below to ensure consistent and clean contributions.
 
 ## Requirements
-Use PHP 64-bit  
+Use 64-bit PHP 8.5.12 or newer.
 Use Composer for dependencies  
 Follow PSR standards for coding style and autoloading  
 Write clear commit messages
@@ -15,7 +15,7 @@ composer install
 ## Tests
 All changes must include tests or must not break existing tests  
 Run tests with  
-vendor/bin/phpunit
+vendor/bin/phpunit --bootstrap vendor/autoload.php --do-not-cache-result Tests
 
 ## Pull requests
 Create a feature branch  
