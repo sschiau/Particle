@@ -1,42 +1,125 @@
 [![Latest Stable Version](https://poser.pugx.org/sschiau/particle/v/stable)](https://packagist.org/packages/sschiau/particle)
+[![Tests](https://github.com/sschiau/Particle/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/sschiau/Particle/actions/workflows/tests.yml)
 [![License](https://poser.pugx.org/sschiau/particle/license)](https://packagist.org/packages/sschiau/particle)
 
 # Particle
-#### Language: PHP
-#### 64bits int Time Based ID Generator
 
-### Uncoordinated
-For high availability within and across data centers, machines generating ids should not have to coordinate with each other.
+Particle is a PHP library for generating time-based integer IDs without a central
+coordination service. Each ID combines a millisecond timestamp, a configured
+machine identifier, and a random 12-bit sequence. The original timestamp can be
+extracted from a generated ID.
 
-### Solution
-* 64-bit PHP 8.5.12 or newer. Older versions are rejected by Composer and at runtime,
-  including when loading `Sources/Particle.php` directly.
-* Composer verifies PHP and extension requirements when loading its autoloader.
-  The runtime guard also enforces the minimum version and 64-bit integers.
+## Requirements
 
-Install dependencies with `composer install`, then run
-`composer check-platform-reqs` in the deployment environment. Do not bypass the
-checks with `--ignore-platform-reqs`. Check the PHP-FPM or Apache runtime as well
-as CLI PHP when deploying to a web server.
-* Particle Id (64 bits) is composed of:
-  * time - 42 bits (millisecond precision w/ a custom epoch)
-  * configured machine id - 10 bits - up to 1024 machines
-  * sequence number - 12 bits - up to 4096 random numbers
+- **PHP 8.5.12 or newer**, running on a 64-bit platform.
+- Composer for package installation.
+- A system clock synchronized through NTP or an equivalent service.
 
-### System Clock Dependency
-You should use NTP to keep your system clock accurate.
+Composer enforces the PHP version and architecture requirements during
+installation. The library also validates both when its source is loaded,
+including when used without Composer.
 
-## How to use it
-#### Generate Particle ID
-Change const EPOCH in particle class to today epoch time w/ millisecond (13 digits)
+## Installation
 
-```PHP
-	$machineID = 0; // Machine ID (aka Server ID no.)
-	Particle::generateParticle($machineID);
+Install Particle in your application:
+
+```sh
+composer require "sschiau/particle:^3.1"
+composer check-platform-reqs --no-dev
 ```
 
-#### Time from Particle ID (w/ millisecond precision)
-```PHP
-	$particleID = '4611691166465789880';
-	Particle::timeFromParticle($particleID);
+For web deployments, verify that PHP-FPM or Apache uses a supported PHP runtime
+as well as the CLI. Do not bypass platform checks with `--ignore-platform-reqs`.
+
+## Quick start
+
+Configure the machine identifier once before generating IDs. Valid identifiers
+range from `0` to `1023`; assign a different identifier to each machine.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/vendor/autoload.php';
+
+use Schiau\Utilities\Particle;
+
+Particle::machineId(0);
+
+$id = Particle::generateParticle();
+$timestampMs = Particle::timeFromParticle($id);
+
+echo 'Particle ID: ' . $id . PHP_EOL;
+echo 'Unix timestamp (milliseconds): ' . $timestampMs . PHP_EOL;
 ```
+
+## API reference
+
+All methods are static and belong to `Schiau\Utilities\Particle`.
+
+| Method | Description |
+| --- | --- |
+| `machineId(int $machineId): void` | Configures a machine identifier between `0` and `1023`. |
+| `generateParticle(): int` | Generates an ID using the configured machine identifier and current time. |
+| `timeFromParticle(int $particle): int` | Extracts a Unix timestamp in milliseconds from an ID. |
+
+Calling `generateParticle()` before configuring a machine identifier throws a
+`LogicException`. An out-of-range machine identifier throws an
+`InvalidArgumentException`. Loading the library on an unsupported runtime throws
+a `RuntimeException`.
+
+## ID format and storage
+
+IDs are represented as PHP integers and combine these fields:
+
+| Field | Purpose |
+| --- | --- |
+| Timestamp | Millisecond time encoded using the library's fixed custom epoch. |
+| Machine identifier | 10 bits, supporting 1,024 distinct machine identifiers. |
+| Random sequence | 12 bits, providing 4,096 possible values per machine per millisecond. |
+
+Keep the epoch unchanged so existing IDs retain their timestamp meaning. Store
+IDs in a 64-bit integer column. Serialize them as decimal strings when sending
+them to JavaScript or another consumer that cannot represent large integers
+exactly.
+
+## Operational considerations
+
+**Uniqueness.** Random sequence values can repeat. IDs generated on the same
+machine in the same millisecond can therefore collide; 4,096 possible sequence
+values do not guarantee 4,096 unique IDs. When using IDs as database keys,
+enforce a unique constraint and handle duplicate-key failures with a bounded
+regeneration and retry policy.
+
+**Clock behavior.** IDs depend on the system clock. Clock rollback can repeat
+timestamp values, and IDs generated within one millisecond are not guaranteed
+to be ordered. Generation fails if the current time is before the custom epoch.
+
+**Security.** IDs expose timing information and provide limited randomness. Use
+separate cryptographically secure tokens for authentication, password resets,
+and other secrets.
+
+## Development
+
+From a checkout of this repository, install dependencies and run the checks:
+
+```sh
+composer install
+composer check-platform-reqs
+vendor/bin/phpunit --bootstrap vendor/autoload.php --do-not-cache-result Tests
+php Demo/index.php
+composer audit --locked
+```
+
+CI runs the test suite and dependency audit on a supported PHP 8.5 runtime.
+Separate jobs use exact PHP 8.4.27 and 8.5.11 containers to verify that unsupported
+versions are rejected by Composer and direct source loading.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines,
+[CHANGELOG.md](CHANGELOG.md) for release history, and
+[GitHub Releases](https://github.com/sschiau/Particle/releases) for published versions.
+
+## License
+
+Particle is released under the [MIT License](LICENSE.md).
