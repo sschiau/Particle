@@ -1,3 +1,9 @@
+## 3.1.2 (October 24 2026)
+- Refresh the README with installation instructions, a working quick-start example, and an API reference.
+- Document ID storage, collision handling, clock behavior, security considerations, and deployment requirements.
+- Add the test status badge and clarify development and compatibility checks.
+- Keep runtime requirements and ID generation behavior unchanged.
+
 ## 3.1.1 (October 24 2026)
 - Fix unsupported-version CI checks by using exact PHP 8.4.27 and 8.5.11 container images instead of setup-php, which resolves patch versions to a minor release.
 - Verify the actual PHP version before running compatibility checks.
