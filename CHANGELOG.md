@@ -1,3 +1,9 @@
+## 3.1.1 (October 24 2026)
+- Fix unsupported-version CI checks by using exact PHP 8.4.27 and 8.5.11 container images instead of setup-php, which resolves patch versions to a minor release.
+- Verify the actual PHP version before running compatibility checks.
+- Run the supported PHP 8.5 job with an explicit minimum-version and 64-bit check.
+- Keep the PHP 8.5.12 minimum requirement and ID generation behavior unchanged.
+
 ## 3.1.0 (October 24 2026)
 - Require 64-bit PHP 8.5.12 or newer in Composer and when loading the library directly.
 - Enable Composer runtime platform checks and refresh lockfile metadata.
