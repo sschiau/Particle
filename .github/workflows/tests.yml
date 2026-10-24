@@ -12,8 +12,12 @@ jobs:
 
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.5.12"
+          php-version: "8.5"
           coverage: none
+
+      - name: verify supported PHP version
+        run: |
+          php -r 'exit(PHP_VERSION_ID >= 80512 && PHP_INT_SIZE === 8 ? 0 : 1);'
 
       - name: install
         run: composer install --no-interaction --prefer-dist
@@ -29,15 +33,21 @@ jobs:
 
   reject-unsupported-php:
     runs-on: ubuntu-latest
+    container: php:${{ matrix.php }}-cli
     strategy:
       matrix:
         php: ["8.4.27", "8.5.11"]
     steps:
       - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php }}
-          coverage: none
+      - name: verify exact PHP version
+        env:
+          EXPECTED_PHP_VERSION: ${{ matrix.php }}
+        run: |
+          php -r 'exit(PHP_VERSION === getenv("EXPECTED_PHP_VERSION") ? 0 : 1);'
+      - name: install Composer
+        run: |
+          curl --fail --silent --show-error --location https://github.com/composer/composer/releases/download/2.8.12/composer.phar --output /tmp/particle-composer.phar
+          php -r '$phar = new Phar("/tmp/particle-composer.phar"); exit($phar->getSignature()["hash_type"] === "SHA-512" ? 0 : 1);'
       - name: reject unsupported PHP at runtime
         run: |
           php -r '
@@ -53,12 +63,12 @@ jobs:
           exit(1);'
       - name: reject unsupported PHP in Composer
         run: |
-          if composer check-platform-reqs --lock --format=json > platform-check.json; then
+          if php /tmp/particle-composer.phar check-platform-reqs --lock --format=json > /tmp/platform-check.json; then
             echo "Unsupported PHP was accepted by Composer."
             exit 1
           fi
           php -r '
-          $checks = json_decode(file_get_contents("platform-check.json"), true, 512, JSON_THROW_ON_ERROR);
+          $checks = json_decode(file_get_contents("/tmp/platform-check.json"), true, 512, JSON_THROW_ON_ERROR);
           foreach ($checks as $check) {
               if ($check["name"] === "php" && $check["status"] === "failed") {
                   exit(0);
